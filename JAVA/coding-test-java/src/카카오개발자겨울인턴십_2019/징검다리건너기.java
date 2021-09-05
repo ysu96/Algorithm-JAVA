@@ -2,6 +2,7 @@ package 카카오개발자겨울인턴십_2019;
 
 import java.util.Arrays;
 
+//이진 탐색으로 풀어야 효율성 통과가능 !!!
 public class 징검다리건너기 {
     public int solution(int[] stones, int k) {
         int answer = 0;
