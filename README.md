@@ -1,2 +1,3 @@
-# Coding-Test-JAVA
-Coding test practice for JAVA
+# Algorithm Study (JAVA)
+- BOJ
+- Programmers
