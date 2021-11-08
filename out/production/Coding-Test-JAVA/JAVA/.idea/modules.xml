@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/JAVA.iml" filepath="$PROJECT_DIR$/.idea/JAVA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SDS_Algorithm/SDS_Algorithm.iml" filepath="$PROJECT_DIR$/SDS_Algorithm/SDS_Algorithm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/coding-test-java/coding-test-java.iml" filepath="$PROJECT_DIR$/coding-test-java/coding-test-java.iml" />
+    </modules>
+  </component>
+</project>
