@@ -17,7 +17,7 @@ class Node {
     }
 }
 
-public class BOJ_7576 {
+public class BOJ_7576_BFS {
     public static int N,M;
     public static int[][] graph;
     public static int[] dr = {0,0,1,-1};

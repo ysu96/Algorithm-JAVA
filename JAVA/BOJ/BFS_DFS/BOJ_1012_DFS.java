@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 //유기농 배추 dfs
-public class BOJ_1012 {
+public class BOJ_1012_DFS {
     public static int[][] graph;
     public static boolean[][] visited;
     public static int[] dr = {-1, 1, 0, 0};
