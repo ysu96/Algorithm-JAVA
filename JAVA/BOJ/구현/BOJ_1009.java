@@ -16,8 +16,8 @@ public class BOJ_1009 {
             st = new StringTokenizer(br.readLine());
             a = Integer.parseInt(st.nextToken());
             b = Integer.parseInt(st.nextToken());
-            int tmp = a;
-            for(int i=1; i<b; i++){
+            int tmp = 1;
+            for(int i=0; i<b; i++){
                 tmp*=a;
                 tmp = tmp%10;
             }
