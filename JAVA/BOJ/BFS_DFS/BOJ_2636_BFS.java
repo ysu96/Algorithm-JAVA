@@ -40,19 +40,9 @@ public class BOJ_2636_BFS {
                 }
             }
             chzs = tmp;
-
             visited = new boolean[R][C];
             isC(0,0);
-
-            for(int i=0; i<R; i++){
-                for(int j=0; j<C; j++){
-                    if(arr[i][j] == -1){
-                        arr[i][j] = 0;
-                    }
-                }
-            }
             time++;
-
         }
         System.out.println(time);
         System.out.println(chzs);
@@ -75,7 +65,8 @@ public class BOJ_2636_BFS {
                     visited[nr][nc] = true;
                 }
                 else if (arr[nr][nc] == 1){
-                    arr[nr][nc] = -1;
+                    visited[nr][nc] = true;
+                    arr[nr][nc] = 0;
                 }
             }
         }
