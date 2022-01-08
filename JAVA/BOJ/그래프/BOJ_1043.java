@@ -10,114 +10,84 @@ import java.util.StringTokenizer;
 //거짓말
 public class BOJ_1043 {
     public static int N, M, T;
-    public static int[] people; // 0 : 무지, 1 : 진실, 2 : 거짓
+    public static boolean[] people; // 0 : 무지, 1 : 진실, 2 : 거짓
     public static List<Integer>[] party;
     public static int answer;
+    public static int[] parent;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
-        people = new int[N + 1];
+        people = new boolean[N + 1];
+
+        parent = new int[N + 1];
+        for(int i=1; i<=N; i++) parent[i] = i;
+
         party = new List[M];
         for (int i = 0; i < M; i++) {
             party[i] = new LinkedList<>();
         }
+
         st = new StringTokenizer(br.readLine());
         T = Integer.parseInt(st.nextToken());
         for (int i = 1; i <= T; i++) {
-            people[Integer.parseInt(st.nextToken())] = 1;
+            people[Integer.parseInt(st.nextToken())] = true;
         }
+
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
             int num = Integer.parseInt(st.nextToken());
-            for (int j = 0; j < num; j++) {
+
+            if(num <= 1){
+                party[i].add(Integer.parseInt(st.nextToken()));
+                continue;
+            }
+
+            int first = Integer.parseInt(st.nextToken());
+            party[i].add(first);
+            for (int j = 1; j < num; j++) {
                 int a = Integer.parseInt(st.nextToken());
+                union(first, a);
                 party[i].add(a);
             }
         }
 
-        for(int i=0; i<M; i++){
-            if(checkTrue(i)){
-                for(int j=0; j<party[i].size(); j++){
-                    people[party[i].get(j)] = 1;
+        for(int i=1; i<=N; i++){
+            if(people[i]){
+                int root = find_parent(i);
+                for(int j=1; j<=N; j++){
+                    if (find_parent(j) == root) {
+                        people[j] = true;
+                    }
                 }
             }
         }
+
         for(int i=0; i<M; i++){
-            if(checkTrue(i)){
-                for(int j=0; j<party[i].size(); j++){
-                    people[party[i].get(j)] = 1;
+            boolean check = false;
+            for(int p : party[i]){
+                if(people[p]){
+                    check = true;
+                    break;
                 }
             }
+            if(!check) answer++;
         }
-        for(int i=0; i<M; i++){
-            if(!checkTrue(i)){
-                answer++;
-            }
-        }
-//        solution(0, 0);
         System.out.println(answer);
     }
 
-    public static boolean checkTrue(int idx) {
-        for (int i = 0; i < party[idx].size(); i++) {
-            int a = party[idx].get(i);
-            if (people[a] == 1) {
-                return true;
-            }
+    public static int find_parent(int x){
+        if (x != parent[x]) {
+            return parent[x] = find_parent(parent[x]);
         }
-        return false;
+        return parent[x];
     }
 
-    public static boolean checkFalse(int idx) {
-        for (int i = 0; i < party[idx].size(); i++) {
-            int a = party[idx].get(i);
-            if (people[a] == 2) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static void solution(int idx, int cnt) {
-        if(idx == M){
-            answer = Math.max(answer, cnt);
-            return;
-        }
-
-        if (checkTrue(idx) && checkFalse(idx)) {
-            solution(idx + 1, cnt);
-        } else if (checkTrue(idx)) {
-            for(int i=0; i<party[idx].size(); i++){
-                people[party[idx].get(i)] = 1;
-            }
-            solution(idx+1, cnt);
-            for(int i=0; i<party[idx].size(); i++){
-                people[party[idx].get(i)] = 0;
-            }
-        } else {
-            for(int i=0; i<party[idx].size(); i++){
-                people[party[idx].get(i)] = 2;
-            }
-            solution(idx+1, cnt+1);
-            for(int i=0; i<party[idx].size(); i++){
-                people[party[idx].get(i)] = 0;
-            }
-        }
-
-        // 진실
-        if(checkTrue(idx)){
-            for(int i=0; i<party[idx].size(); i++){
-                people[party[idx].get(i)] = 1;
-            }
-            solution(idx+1, cnt);
-            for(int i=0; i<party[idx].size(); i++){
-                people[party[idx].get(i)] = 0;
-            }
-        }
-        // 과장
-
+    public static void union(int a, int b) {
+        int parent_a = find_parent(a);
+        int parent_b = find_parent(b);
+        parent[parent_b] = parent_a;
     }
 }
