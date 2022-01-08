@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+//거듭제곱 알고리즘, 분할정복
 public class BOJ_1629 {
     public static int A,B,C;
 
