@@ -18,22 +18,38 @@ public class P1 {
                 break;
             }
         }
-        int fee;
-        if (maxidx == 0) {
-            fee = fees[0][2] * usage;
-        } else {
-            fee = fees[0][2] * fees[0][0];
-            usage -= fees[0][0];
-        }
-
-        for (int i = 1; i <= maxidx; i++) {
+        int fee = 0;
+        for (int i = 0; i <= maxidx; i++) {
             if (i == maxidx) {
                 fee += fees[i][2] * usage;
                 break;
             }
-            fee += fees[i][2] * (fees[i][0] - fees[i - 1][0]);
-            usage -= (fees[i][0] - fees[i - 1][0]);
+
+            int use;
+            if (i == 0) {
+                use = fees[0][0];
+            } else {
+                use = fees[i][0] - fees[i - 1][0];
+            }
+            fee += fees[i][2] * use;
+            usage -= use;
         }
+//        int fee;
+//        if (maxidx == 0) {
+//            fee = fees[0][2] * usage;
+//        } else {
+//            fee = fees[0][2] * fees[0][0];
+//            usage -= fees[0][0];
+//        }
+//
+//        for (int i = 1; i <= maxidx; i++) {
+//            if (i == maxidx) {
+//                fee += fees[i][2] * usage;
+//                break;
+//            }
+//            fee += fees[i][2] * (fees[i][0] - fees[i - 1][0]);
+//            usage -= (fees[i][0] - fees[i - 1][0]);
+//        }
         return common + fee;
     }
 
