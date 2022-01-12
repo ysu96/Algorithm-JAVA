@@ -1,50 +1,104 @@
 package NTS2022;
 
-// dp[cnt][sum][odd_sum]
-// cnt : 그룹 개수, sum : 총 합, odd_sum : 홀수번째 총 합, dp[N][M][M/2] * 2 가 정답
-//
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Solution3 {
-    public int solution(int n, int m, int k) {
-        int[][][] dp = new int[n + 1][m + 1][m + 1];
-        int MOD = 1000000007;
-        dp[0][0][0] = 1;
-        for (int i = 1; i <= n; i++) {
-            for (int s = 1; s <= m; s++) {
-                if (s > i * k) {
-                    break;
-                }
+    public int solution(String join_date, String resign_date, String[] holidays) {
+        Map<String, Integer> days = new HashMap<>();
+        days.put("MON", 0);
+        days.put("TUE", 1);
+        days.put("WED", 2);
+        days.put("THU", 3);
+        days.put("FRI", 4);
+        days.put("SAT", 5);
+        days.put("SUN", 6);
+        int day = days.get(join_date.substring(11));
+        int[] today = parsing_YMD(join_date, day);
+        int[] resign_day = parsing_YMD(resign_date, -1);
+        int answer = 0;
 
-                for (int os = 1; os <= m; os++) { //odd sum, 홀수번째 그룹의 합
-                    if (os > s) {
-                        break;
-                    }
-
-                    if (i % 2 == 1) {
-                        for (int l = 1; l <= k; l++) {
-                            if (s < l || os < l) {
-                                break;
-                            }
-                            dp[i][s][os] += dp[i - 1][s - l][os - l];
-                            dp[i][s][os] %= MOD;
-                        }
-                    } else {
-                        for (int l = 1; l <= k; l++) {
-                            if (s < l) {
-                                break;
-                            }
-                            dp[i][s][os] += dp[i - 1][s - l][os];
-                            dp[i][s][os] %= MOD;
-                        }
-                    }
-                }
+        while (true) {
+            System.out.println(Arrays.toString(today));
+            if (is_workingDay(today) && !is_holiday(today, holidays)) {
+                answer++;
             }
+            if (is_resignDay(today, resign_day)) {
+                break;
+            }
+            today = tomorrow(today);
         }
-        return dp[n][m][m / 2] * 2;
+        System.out.println(answer);
+        return answer;
     }
 
     public static void main(String[] args) {
         Solution3 s3 = new Solution3();
-        System.out.println(s3.solution(3, 8, 4));
-        System.out.println(s3.solution(10, 6, 5));
+        s3.solution("2019/12/01 SUN", "2019/12/31", new String[]{"12/25"});
     }
+
+    public boolean is_resignDay(int[] today, int[] resign_day) {
+        if (today[0] == resign_day[0] && today[1] == resign_day[1] && today[2] == resign_day[2]) {
+            return true;
+        }
+        return false;
+    }
+
+    public int[] parsing_YMD(String date, int day) {
+        int[] tmp = new int[4];
+        tmp[0] = Integer.parseInt(date.substring(0, 4));
+        tmp[1] = Integer.parseInt(date.substring(5, 7));
+        tmp[2] = Integer.parseInt(date.substring(8, 10));
+        tmp[3] = day;
+        return tmp;
+    }
+
+    public boolean checkYun(int year) {
+        if (year % 400 == 0) return true;
+        if (year % 100 == 0) return false;
+        return year % 4 == 0;
+    }
+
+    public boolean is_workingDay(int[] day) {
+        int DD = day[3];
+        if (DD == 5 || DD == 6) {
+            return false;
+        }
+        return true;
+    }
+
+    public int[] tomorrow(int[] today) {
+        int[] days = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int Y = today[0];
+        int M = today[1];
+        int D = today[2];
+        int DD = today[3];
+        int last = days[M];
+        if (checkYun(Y) && M == 2) {
+            last++;
+        }
+
+        if (D == last) {
+            D = 1;
+            M++;
+        } else {
+            D++;
+        }
+        if (M == 13) {
+            M = 1;
+            Y++;
+        }
+        return new int[]{Y, M, D, (DD + 1) % 7};
+    }
+
+    public boolean is_holiday(int[] today, String[] holidays) {
+        for (String s : holidays) {
+            if (s.equals(Integer.toString(today[1]) + '/' + today[2])) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
