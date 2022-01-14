@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-//N과 M
+//N과 M 2
 public class BOJ_15650 {
     public static int N,M;
     public static int[] arr;
