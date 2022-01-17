@@ -10,6 +10,7 @@ import java.util.Stack;
 // 스택에는 연산자만 사용하고, 피연산자는 바로바로 출력한다
 // 연산자의 우선 순위를 지정해서 stack에 넣기 전에, 현재 연산자의 우선순위보다 큰 연산자가 stack의 맨 위에 있다면 없을 때까지 pop한다. (우선순위가 큰 연산자가 먼저 계산되어야 하기 때문)
 // )일 경우에는 (가 나올 때까지 stack 안의 연산자를 pop한다!
+
 public class BOJ_1918_후위표기식 {
     public static String input;
 
