@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+// pre : root - left - right
+// in : left - root - right
+// post : left - right - root
+
+// post의 마지막 원소는  무조건 root
+// inorder에서 root 기준 왼쪽 오른쪽이 자식 트리
 public class BOJ_2263_트리순회 {
     public static int n;
     public static int[] inorder, postorder;
