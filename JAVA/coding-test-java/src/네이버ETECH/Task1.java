@@ -10,7 +10,7 @@ public class Task1 {
         // write your code in Java SE 8
         char[] chars = T.toCharArray();
         StringBuilder answer = new StringBuilder();
-        Arrays.sort(chars);
+        Arrays.sort(chars); //듀얼 피봇 퀵 정렬  nlogn ~ n^2
         for(int i=chars.length-1; i>=0; i--){
             answer.append(chars[i]);
         }
