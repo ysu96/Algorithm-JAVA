@@ -13,7 +13,8 @@ public class BOJ_12852_1로2만들기_2 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
-        dp = new int[N + 1];
+        dp = new int[1000001];
+        // 1000000
         dp[1] = 0;
         dp[2] = 1;
         dp[3] = 1;
@@ -35,45 +36,44 @@ public class BOJ_12852_1로2만들기_2 {
         }
         List<Integer> list = new ArrayList<>();
         list.add(N);
+        System.out.println(dp[N]);
         while(N != 1){
             if(N % 3 == 0) {
                 if (N % 2 == 0) {
                     if(dp[N/3] > dp[N/2]){
                         if(dp[N/2] > dp[N-1]){
                             N = N-1;
-                            list.add(N);
                         }
                         else{
                             N = N/2;
-                            list.add(N);
                         }
                     }else{
                         if(dp[N/3] > dp[N-1]){
                             N = N-1;
-                            list.add(N);
                         }else{
                             N = N/3;
-                            list.add(N);
                         }
                     }
                 } else {
                     if (dp[N/3] > dp[N-1]){
                         N = N-1;
-                        list.add(N);
                     }else{
                         N = N/3;
-                        list.add(N);
                     }
                 }
             }else{
-                if(N%2 == 0){
-
-                }else{
-
+                if (N % 2 == 0) {
+                    if(dp[N/2] > dp[N-1]){
+                        N = N-1;
+                    }else{
+                        N = N/2;
+                    }
+                } else {
+                    N = N-1;
                 }
             }
+            list.add(N);
         }
-        System.out.println(dp[N]);
         for (int i : list) {
             System.out.print(i + " ");
         }
