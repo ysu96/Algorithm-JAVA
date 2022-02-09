@@ -15,7 +15,6 @@ public class BOJ_17404_RGB거리2 {
         StringTokenizer st;
         weight = new int[N][3];
         dp = new int[N][3];
-        int[] idx = new int[N];
 
         for(int i=0; i<N; i++){
             st = new StringTokenizer(br.readLine());
