@@ -2,6 +2,7 @@ package JAVA.Programmers.src.KAKAO2022;
 
 import java.util.*;
 
+//26분걸림
 public class p2_주차요금계산 {
     public int[] solution(int[] fees, String[] records) {
         //TreeMap은 키 자동 오름차순 정렬 저장!!
