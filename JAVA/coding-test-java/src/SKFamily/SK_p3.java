@@ -17,9 +17,7 @@ public class SK_p3 {
             check[xy[1]][xy[0]] = true;
         }
 
-        //최단경로는 width + height + 1?
 //        dfs(0,0,0,height, width, false);
-
 
         dp = new int[width + 1][height + 1];
         dp[0][0] = 1;
@@ -134,5 +132,6 @@ public class SK_p3 {
         SK_p3 p3 = new SK_p3();
 //        System.out.println(p3.solution(2, 2, new int[][]{{1, 1}, {2, 2}}));
         System.out.println(p3.solution(51, 37, new int[][]{{17, 19}}));
+        //51, 37, {{17, 19}} 3225685
     }
 }
