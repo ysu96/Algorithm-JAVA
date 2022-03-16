@@ -11,6 +11,9 @@ package SKFamily;
 import java.util.ArrayList;
 import java.util.List;
 
+// i ~ k 사이의 노드의 개수가 경우의 수  : dist(i~k)-1
+// 모든 가능한 경로의 합 - n(n-1)/2
+// 가능한 모든 경로의 거리를 구하는 문제로 축소 가능
 public class SK_p4 {
     public long solution(int n, int[][] edges) {
         long answer = 0;
