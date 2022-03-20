@@ -13,13 +13,5 @@ public class SKP3 {
 
             return;
         }
-
-        // 가능한 경우의 수 다 바꾸기
-//        for(int i=0; i<len; i++){
-//            for(int j=i+1; j<lne; j++){
-//                // i, j 바꾸기
-//                // m--, 재귀 호출
-//            }
-//        }
     }
 }
