@@ -59,8 +59,6 @@ public class BOJ_14499_주사위굴리기 {
             this.bottom = down;
             this.down = tmp;
         }
-
-
     }
 
     public static void copy(int x, int y) {
