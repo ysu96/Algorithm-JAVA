@@ -127,9 +127,6 @@ public class BOJ_23288_주사위굴리기2 {
                     break;
             }
 
-//            printDice(dice);
-//            System.out.println();
-
             // 다음 방향 정하기
             if (dice.bottom > map[r][c]) {
                 //90 clockwise
