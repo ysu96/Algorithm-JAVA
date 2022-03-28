@@ -59,8 +59,8 @@ public class BOJ_20056_파이어볼 {
             //이동
             while (!q.isEmpty()) {
                 Fireball cur = q.poll();
-                int nr = (cur.r + (dr[cur.d] * cur.s) + N) % N;
-                int nc = (cur.c + (dc[cur.d] * cur.s) + N) % N;
+                int nr = (cur.r + (dr[cur.d] * cur.s) + N*cur.s) % N;
+                int nc = (cur.c + (dc[cur.d] * cur.s) + N*cur.s) % N;
                 map[nr][nc].add(new Fireball(nr, nc, cur.m, cur.s, cur.d));
 //                System.out.println("K : " + K + " nr : " + nr + " nc : " + nc);
             }
