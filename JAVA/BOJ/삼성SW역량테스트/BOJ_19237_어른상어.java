@@ -12,6 +12,7 @@ public class BOJ_19237_어른상어 {
     public static int sharkCnt;
     public static int answer;
     public static Smell[][] map;
+    public static Queue<Shark> sharks;
 
     //지도에 저장할 것
     // 상어 번호, 방향, 향기 남은 시간
@@ -48,7 +49,7 @@ public class BOJ_19237_어른상어 {
         M = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
         map = new Smell[N][N];
-        Queue<Shark> sharks = new LinkedList<>();
+        sharks = new LinkedList<>();
 
         for (int i = 0; i < N; i++) {
             //격자
@@ -89,7 +90,7 @@ public class BOJ_19237_어른상어 {
 
         while (true) {
             //1번 상어만 격자에 남았는지
-            //isComplete();
+            if(isComplete()) break;
 
             // 1000초가 넘었는데 다른 상어가 격자에 남아있는지
             if(answer > 1000){
@@ -101,6 +102,14 @@ public class BOJ_19237_어른상어 {
             //move();
             //방향 업데이트
             //updateDir();
+        }
+    }
+
+    public static boolean isComplete(){
+        if(sharks.size() == 1){
+            return true;
+        }else{
+            return false;
         }
     }
 }
