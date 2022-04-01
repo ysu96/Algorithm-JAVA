@@ -141,35 +141,22 @@ public class BOJ_19237_어른상어 {
                 if (nr < 0 || nr >= N || nc < 0 || nc >= N) continue;
 
                 //여기선 id에 방향을 넣어줌
-                if (map[nr][nc].time <= 0) candidate1.add(new Shark(i, nr, nc));
-                else if (map[nr][nc].shark == id) candidate2.add(new Shark(i, nr, nc));
+                if (map[nr][nc].time <= 0) candidate1.add(new Shark(i, nr, nc)); //빈 칸이 있으면
+                else if (map[nr][nc].shark == id) candidate2.add(new Shark(i, nr, nc)); //자신의 냄새가 있는 칸의 방향으로 잡기
             }
 
             int first = 5;
-
-            //빈 칸이 있으면
-            if (candidate1.size() != 0) {
-                while (!candidate1.isEmpty()) {
-                    Shark poll = candidate1.poll();
-                    for (int i = 0; i < 4; i++) {
-                        int ndir = priority[id][dir][i];
-                        if (poll.id == ndir) {
-                            if (first > i) first = i;
-                        }
-                    }
-                }
-            } else {
-                //자신의 냄새가 있는 칸의 방향으로 잡기
-                while (!candidate2.isEmpty()) {
-                    Shark poll = candidate2.poll();
-                    for (int i = 0; i < 4; i++) {
-                        int ndir = priority[id][dir][i];
-                        if (poll.id == ndir) {
-                            if (first > i) first = i;
-                        }
+            Queue<Shark> candidate = candidate1.size() != 0 ? candidate1 : candidate2;
+            while (!candidate.isEmpty()) {
+                Shark poll = candidate1.poll();
+                for (int i = 0; i < 4; i++) {
+                    int ndir = priority[id][dir][i];
+                    if (poll.id == ndir) {
+                        if (first > i) first = i;
                     }
                 }
             }
+
             //이러고 priority[id][shark.dir][first]의 방향으로 가면 됨??
             int ndir = priority[id][dir][first];
             int nr = r + dr[ndir];
@@ -187,8 +174,9 @@ public class BOJ_19237_어른상어 {
                 isShark[nr][nc] = true;
                 newSharks.add(new Shark(id, nr, nc));
                 map[nr][nc].shark = id;
-//                map[nr][nc].time = 5;
             }
+
+            //상어 방향 업데이트
             sharkDir[id] = ndir;
         }
 
@@ -200,11 +188,7 @@ public class BOJ_19237_어른상어 {
     }
 
     public static boolean isComplete() {
-        if (sharks.size() == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return sharks.size() == 1;
     }
 
     public static void printMap() {
