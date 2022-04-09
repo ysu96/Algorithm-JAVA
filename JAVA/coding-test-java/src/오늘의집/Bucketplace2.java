@@ -63,3 +63,51 @@ public class Bucketplace2 {
         //"ABCabcA"	"BCbc"
     }
 }
+
+//2 - n^3 코드
+//        import copy
+//        from collections import defaultdict
+//        from re import sub
+//        import sys
+//        si = sys.stdin.readline
+//        str = si().strip()
+//        copied_str = copy.deepcopy(str)
+//        str = str.lower()
+//        n = len(str)
+//        D = defaultdict(int)
+//        max_value = 0
+//        for i in range(n):
+//        substr = ""
+//        for j in range(i, n):
+//        substr += str[j]
+//        D[substr] += 1
+//        max_value = max(max_value, D[substr])
+//        erased = [0 for _ in range(n)]
+//        for i in range(n):
+//        substr = ""
+//        for j in range(i, n):
+//        substr += str[j]
+//        if D[substr] == max_value:
+//        for k in range(i, j + 1):
+//        erased[k] = 1
+//        for i in range(n):
+//        if erased[i] == 0:
+//        print(copied_str[i], end='')
+//        2 - 정해
+//        import copy
+//        from collections import defaultdict
+//        from re import sub
+//        import sys
+//        si = sys.stdin.readline
+//        str = si().strip()
+//        copied_str = copy.deepcopy(str)
+//        str = str.lower()
+//        n = len(str)
+//        count_alphabet = [0 for _ in range(26)]
+//        for c in str:
+//        count_alphabet[ord(c) - ord('a')] += 1
+//        max_value = max(count_alphabet)
+//
+//        for (c, copied_c) in zip(str, copied_str):
+//        if count_alphabet[ord(c) - ord('a')] != max_value:
+//        print(copied_c, end='')

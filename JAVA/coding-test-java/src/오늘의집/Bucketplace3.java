@@ -72,3 +72,42 @@ public class Bucketplace3 {
         System.out.println(bc3.solution("{a} {b} {c} {d} {i}", variables));
     }
 }
+
+//3.
+//import sys
+//from collections import defaultdict
+//sys.setrecursionlimit(100005)
+//si = sys.stdin.readline
+//template_string = si().strip()
+//n = int(si())
+//rules = dict()
+//variables = set()
+//for _ in range(n):
+//    key, value = si().split()
+//    rules[key] = value  # key라는 변수가 value라는 걸로 바뀜!
+//    variables.add(key)
+//def is_variable(value):
+//    return value[0] == '{' and value[-1] == '}' and value[1: -1] in variables  # O(1)
+//outedge = defaultdict(list)
+//init_vars = []
+//for key, value in rules.items():
+//    # key -> value 로 바뀌는데
+//    if is_variable(value):  # value가 변수라면, value -> key 간선 만들어주기
+//        outedge[value[1: -1]].append(key)
+//    else:  # value가 단어라면, key는 시작점 중 하나
+//        init_vars.append(key)  # indegree 가 0 인 정점
+//def dfs(cur: str, changed: str) -> None:
+//    rules[cur] = changed
+//    for nxt in outedge[cur]:
+//        dfs(nxt, changed)
+//for var in init_vars:
+//    dfs(var, rules[var])
+//for word in template_string.split():
+//    if is_variable(word):
+//        converted = rules[word[1: -1]]
+//        if is_variable(converted):  # 무한 루프에 빠져버린 친구
+//            print(word, end=' ')
+//        else:
+//            print(converted, end=' ')
+//    else:
+//        print(word, end=' ')
