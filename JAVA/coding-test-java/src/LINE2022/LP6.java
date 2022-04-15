@@ -2,6 +2,8 @@ package LINE2022;
 
 import java.util.*;
 
+//candidate 후보 구하는 과정은 while문에서 빼도 될거같음
+// 펜딩리스트에 새로 들어가는건 없을테니깐
 public class LP6 {
     class Pending{
         boolean isPurchase;
@@ -51,8 +53,8 @@ public class LP6 {
                 for (int j=0; j<pendingList.size(); j++) {
                     Pending p = pendingList.get(j);
                     if (p.isPurchase == isPurchase) continue;
-                    if(!isPurchase && p.price < price) continue;
-                    if(isPurchase && p.price > price) continue;
+                    if(!isPurchase && p.price < price) continue; //판매인데 사는 값이 더 낮으면 안팔아
+                    if(isPurchase && p.price > price) continue; // 구매인데 파는값이 더 높으면 안사
                     candidate.add(p);
                 }
 
