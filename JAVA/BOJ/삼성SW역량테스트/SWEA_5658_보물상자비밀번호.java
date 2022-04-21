@@ -27,18 +27,17 @@ public class SWEA_5658_보물상자비밀번호 {
                 for (int j = 0; j < 4; j++) {
                     String num = str.substring(j * len, j * len + len);
                     int dec = hex2dec(num);
-                    if(!candidate.contains(dec)){
+                    if (!candidate.contains(dec)) {
                         answer.add(hex2dec(num));
                         candidate.add(hex2dec(num));
-//                        System.out.println("" + num + " " + dec);
                     }
                 }
 
                 // 회전
-                str = str.charAt(N-1) + str.substring(0, N-1);
+                str = str.charAt(N - 1) + str.substring(0, N - 1);
             }
 
-            for(int i=0; i<K-1; i++){
+            for (int i = 0; i < K - 1; i++) {
                 answer.poll();
             }
 
@@ -52,9 +51,9 @@ public class SWEA_5658_보물상자비밀번호 {
         for (int i = 0; i < hex.length(); i++) {
             char c = hex.charAt(i);
             if ('A' <= c && c <= 'F') {
-                dec += Math.pow(16, power) * (int) ((c - 'A')+10);
+                dec += Math.pow(16, power) * (int) (c - 'A' + 10);
             } else {
-                dec += Math.pow(16, power) * Character.getNumericValue(c);
+                dec += Math.pow(16, power) * (int) (c - '0');
             }
             power--;
         }
