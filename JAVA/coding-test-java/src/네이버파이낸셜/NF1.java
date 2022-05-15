@@ -3,6 +3,8 @@ package 네이버파이낸셜;
 public class NF1 {
     public int[] solution(int[][] recruits, int s1, int s2) {
         int[][] dp = new int[101][101]; // 경력 x년 , y점 기준일 때 e1+e2의 값
+        // e1+e2가 최대가 되게 expert 기준을 정해라
+        // 단 주니어 > 시니어 > 엑스퍼트 순서대로 되게
         int maxE1 = 0;
         int maxScore = 0;
         int maxSum = 0;

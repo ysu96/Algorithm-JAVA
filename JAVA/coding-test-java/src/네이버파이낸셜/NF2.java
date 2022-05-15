@@ -8,6 +8,9 @@ public class NF2 {
     // Map<city, 연결된 도시들?>
     // Map<city, 가지고 있는 차량>
 
+
+    // 도시 별 최단 거리를 미리 구해놓고 거기다 차 비용값만 곱하면 되는구나..
+    // 택시 찾을 때 이분탐색?
     class Car{
         int weight;
         int price;
