@@ -96,7 +96,7 @@ public class KP3 {
         int[][] maze = new int[][]{
                 {1,1,2,1},{2,1,2,2},{2,2,2,3},{1,2,1,3},{2,2,1,2}
         };
-        kp3.solution(2, 3, maze, 3, 1, 1, 9);
+        kp3.solution(25, 25, maze, 3, 1, 1, 9);
     }
 }
 
